@@ -27,15 +27,11 @@ fun ThreadScreen(
 
         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_medium)))
 
-        Text(
-            text = "Data:  $data"
-        )
+        Text(text = "Data:  $data")
 
         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_medium)))
 
-        Text(
-            text = "Date:  $date"
-        )
+        Text(text = "Date:  $date")
 
         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_medium)))
 

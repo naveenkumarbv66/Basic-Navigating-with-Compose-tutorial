@@ -26,7 +26,7 @@ fun SecondScreen(
         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_medium)))
 
         Text(
-            text = "optionalData: "+ if(optionalData.isNullOrBlank()) "NA" else optionalData
+            text = "optionalData: " + if (optionalData.isNullOrBlank()) "NA" else optionalData
         )
 
         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_medium)))

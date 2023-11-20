@@ -2,7 +2,7 @@ package com.naveen.navhostcompose.navigation
 
 sealed class Screens(val route: String) {
     object FirstScreen : Screens("firstScreen")
-    object SecondScreen : Screens("secondScreen/?optionalData={optionalData}"){
+    object SecondScreen : Screens("secondScreen/?optionalData={optionalData}") {
         fun createRoute(optionalData: String) = "secondScreen/?optionalData=$optionalData"
     }
     object ThreadScreen : Screens("threadScreen")
