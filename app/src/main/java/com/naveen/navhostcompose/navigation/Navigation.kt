@@ -50,7 +50,7 @@ fun navigation(
             )
         }
 
-        OtherScreens(navController)
+        otherScreens(navController)
 
         /*composable(
             route = Screens.ThreadScreen.route + "/{data}/{date}",
@@ -94,7 +94,7 @@ fun navigation(
 
 
 
-fun NavGraphBuilder.OtherScreens(navController: NavHostController){
+fun NavGraphBuilder.otherScreens(navController: NavHostController){
     composable(
         route = Screens.ThreadScreen.route + "/{data}/{date}",
         arguments = listOf(

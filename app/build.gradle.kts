@@ -68,4 +68,6 @@ dependencies {
 
     //Navigating with Compose
     implementation("androidx.navigation:navigation-compose:2.7.5")
+    //Navigating with Compose testing
+    androidTestImplementation("androidx.navigation:navigation-testing:2.7.5")
 }
