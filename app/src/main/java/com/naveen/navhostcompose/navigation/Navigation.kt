@@ -1,6 +1,7 @@
 package com.naveen.navhostcompose.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -49,7 +50,9 @@ fun navigation(
             )
         }
 
-        composable(
+        OtherScreens(navController)
+
+        /*composable(
             route = Screens.ThreadScreen.route + "/{data}/{date}",
             arguments = listOf(
                 navArgument("data") {
@@ -84,15 +87,48 @@ fun navigation(
                 onClick = { navController.popBackStack(Screens.SecondScreen.route, true) },
                 name = NavBackStackEntry.arguments?.getString("name")
             )
-        }
+        }*/
 
     }
 }
 
 
-/*
-fun NavGraphBuilder.SecondScreens(navController: NavHostController){
-    composable(route = Screens.SecondScreen.route){
-        SecondScreen(navController = navController)
+
+fun NavGraphBuilder.OtherScreens(navController: NavHostController){
+    composable(
+        route = Screens.ThreadScreen.route + "/{data}/{date}",
+        arguments = listOf(
+            navArgument("data") {
+                type = NavType.StringType
+                defaultValue = "Nothing"
+                nullable = false
+            },
+            navArgument("date") {
+                type = NavType.IntType
+                defaultValue = 2023
+            }
+        )
+    ) { NavBackStackEntry ->
+        ThreadScreen(
+            onStartFirstScreen = {
+                navController.popBackStack(
+                    Screens.FirstScreen.route,
+                    false
+                )
+            },
+            onNextScreen = { navController.navigate(Screens.FourthScreen.createRoute("Naveen")) },
+            data = NavBackStackEntry.arguments?.getString("data", "NA"),
+            date = NavBackStackEntry.arguments?.getInt("date", 2023)
+        )
     }
-}*/
+
+
+    composable(
+        route = Screens.FourthScreen.route
+    ) { NavBackStackEntry ->
+        FourthScreen(
+            onClick = { navController.popBackStack(Screens.SecondScreen.route, true) },
+            name = NavBackStackEntry.arguments?.getString("name")
+        )
+    }
+}
