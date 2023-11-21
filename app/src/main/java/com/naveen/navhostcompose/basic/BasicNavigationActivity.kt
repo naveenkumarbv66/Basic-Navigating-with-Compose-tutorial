@@ -1,4 +1,4 @@
-package com.naveen.navhostcompose
+package com.naveen.navhostcompose.basic
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,12 +10,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.compose.rememberNavController
-import com.naveen.navhostcompose.navigation.navigation
-import com.naveen.navhostcompose.screens.firstScreen
+import com.naveen.navhostcompose.basic.navigation.navigation
 import com.naveen.navhostcompose.ui.theme.NavhostComposeTheme
 
-class MainActivity : ComponentActivity() {
+class BasicNavigationActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {

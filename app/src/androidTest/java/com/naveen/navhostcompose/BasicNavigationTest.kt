@@ -3,17 +3,16 @@ package com.naveen.navhostcompose
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.navigation.compose.ComposeNavigator
 import androidx.navigation.testing.TestNavHostController
-import com.naveen.navhostcompose.navigation.navigation
+import com.naveen.navhostcompose.basic.navigation.navigation
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-class NavigationTest {
+class BasicNavigationTest {
 
     @get: Rule
     val composeTestRule = createComposeRule()

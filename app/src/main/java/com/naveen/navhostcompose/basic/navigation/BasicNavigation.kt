@@ -1,4 +1,4 @@
-package com.naveen.navhostcompose.navigation
+package com.naveen.navhostcompose.basic.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraphBuilder
@@ -8,10 +8,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.naveen.navhostcompose.screens.FourthScreen
-import com.naveen.navhostcompose.screens.SecondScreen
-import com.naveen.navhostcompose.screens.ThreadScreen
-import com.naveen.navhostcompose.screens.firstScreen
+import com.naveen.navhostcompose.basic.screens.FourthScreen
+import com.naveen.navhostcompose.basic.screens.SecondScreen
+import com.naveen.navhostcompose.basic.screens.ThreadScreen
+import com.naveen.navhostcompose.basic.screens.firstScreen
 
 @Composable
 fun navigation(
@@ -20,21 +20,21 @@ fun navigation(
 
     NavHost(
         navController = navController,
-        startDestination = Screens.FirstScreen.route
+        startDestination = BasicScreens.FirstScreen.route
     ) {
         composable(
-            route = Screens.FirstScreen.route
+            route = BasicScreens.FirstScreen.route
         ) {
             firstScreen(
                 onClick = {
 //                    navController.navigate(Screens.SecondScreen.createRoute("Naveen Kumar"))
-                    navController.navigate(Screens.SecondScreen.route)
+                    navController.navigate(BasicScreens.SecondScreen.route)
                 }
             )
         }
 
         composable(
-            route = Screens.SecondScreen.route,
+            route = BasicScreens.SecondScreen.route,
             arguments = listOf(
                 navArgument("optionalData") {
                     nullable = true
@@ -43,7 +43,7 @@ fun navigation(
         ) {
             SecondScreen(
                 onNextScreen = { data ->
-                    navController.navigate(Screens.ThreadScreen.route + "/$data/20112023")
+                    navController.navigate(BasicScreens.ThreadScreen.route + "/$data/20112023")
                 },
                 onBackScreen = { navController.popBackStack() },
                 optionalData = it.arguments?.getString("optionalData")
@@ -96,7 +96,7 @@ fun navigation(
 
 fun NavGraphBuilder.otherScreens(navController: NavHostController){
     composable(
-        route = Screens.ThreadScreen.route + "/{data}/{date}",
+        route = BasicScreens.ThreadScreen.route + "/{data}/{date}",
         arguments = listOf(
             navArgument("data") {
                 type = NavType.StringType
@@ -112,11 +112,11 @@ fun NavGraphBuilder.otherScreens(navController: NavHostController){
         ThreadScreen(
             onStartFirstScreen = {
                 navController.popBackStack(
-                    Screens.FirstScreen.route,
+                    BasicScreens.FirstScreen.route,
                     false
                 )
             },
-            onNextScreen = { navController.navigate(Screens.FourthScreen.createRoute("Naveen")) },
+            onNextScreen = { navController.navigate(BasicScreens.FourthScreen.createRoute("Naveen")) },
             data = NavBackStackEntry.arguments?.getString("data", "NA"),
             date = NavBackStackEntry.arguments?.getInt("date", 2023)
         )
@@ -124,10 +124,10 @@ fun NavGraphBuilder.otherScreens(navController: NavHostController){
 
 
     composable(
-        route = Screens.FourthScreen.route
+        route = BasicScreens.FourthScreen.route
     ) { NavBackStackEntry ->
         FourthScreen(
-            onClick = { navController.popBackStack(Screens.SecondScreen.route, true) },
+            onClick = { navController.popBackStack(BasicScreens.SecondScreen.route, true) },
             name = NavBackStackEntry.arguments?.getString("name")
         )
     }
