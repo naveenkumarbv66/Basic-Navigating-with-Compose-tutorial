@@ -13,7 +13,7 @@
         android:theme="@style/Theme.NavhostCompose"
         tools:targetApi="31">
         <activity
-            android:name=".basic.BasicNavigationActivity"
+            android:name=".topbar.TopBarActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.NavhostCompose">
