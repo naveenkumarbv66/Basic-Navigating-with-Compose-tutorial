@@ -49,7 +49,7 @@ fun topBarAppBar(
     modifier: Modifier = Modifier
 ) {
     val contextLocal = LocalContext.current
-    var showMenu by remember { mutableStateOf(false) }
+   // var showMenu by remember { mutableStateOf(false) }
 
     TopAppBar(
         title = {
@@ -82,7 +82,8 @@ fun topBarAppBar(
             }
         },
         actions = {
-            if(currentScreen == TopBarScreens.HomeScreen.title){
+            topBarActions(currentScreen)
+           /* if(currentScreen == TopBarScreens.HomeScreen.title){
                 IconButton(onClick = {showToast(contextLocal, "Edit") }) {
                     Icon(
                         imageVector = Icons.Filled.Edit,
@@ -128,7 +129,7 @@ fun topBarAppBar(
                         onClick = { showToast(contextLocal, "About") },
                     )
                 }
-            }
+            }*/
         }
     )
 }
@@ -170,4 +171,60 @@ fun TopBarExample(navController: NavHostController = rememberNavController()) {
         }
     }
 
+}
+
+
+@Composable
+fun topBarActions(currentScreen: String){
+    var showMenu by remember { mutableStateOf(false) }
+    val contextLocal = LocalContext.current
+    if(currentScreen == TopBarScreens.HomeScreen.title){
+        IconButton(onClick = {showToast(contextLocal, "Edit") }) {
+            Icon(
+                imageVector = Icons.Filled.Edit,
+                contentDescription = "back button"
+            )
+        }
+    }else {
+        IconButton(onClick = { showToast(contextLocal, "Account Box") }) {
+            Icon(
+                imageVector = Icons.Filled.AccountBox,
+                contentDescription = "back button"
+            )
+        }
+
+        IconButton(onClick = { showMenu = !showMenu }) {
+            Icon(
+                imageVector = Icons.Filled.MoreVert,
+                contentDescription = "More",
+            )
+        }
+
+        DropdownMenu(
+            expanded = showMenu,
+            onDismissRequest = { showMenu = false }
+        ) {
+            DropdownMenuItem(
+                text = {
+                    Text("Refresh")
+                },
+                onClick = {
+                    showToast(contextLocal, "Refresh")
+                    showMenu = false
+                },
+            )
+            DropdownMenuItem(
+                text = {
+                    Text("Settings")
+                },
+                onClick = { showToast(contextLocal, "Settings") },
+            )
+            DropdownMenuItem(
+                text = {
+                    Text("About")
+                },
+                onClick = { showToast(contextLocal, "About") },
+            )
+        }
+    }
 }
